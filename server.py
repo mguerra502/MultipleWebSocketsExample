@@ -4,6 +4,11 @@ import asyncio
 import json
 import logging
 import websockets
+import sys
+
+if len(sys.argv) < 2:
+	print("server.py <port>")
+	sys.exit(0)
 
 logging.basicConfig()
 
@@ -64,5 +69,5 @@ async def counter(websocket, path):
 
 
 if __name__ == '__main__':
-	asyncio.get_event_loop().run_until_complete(websockets.serve(counter, '0.0.0.0', 6789))
+	asyncio.get_event_loop().run_until_complete(websockets.serve(counter, '0.0.0.0', sys.argv[1]))
 	asyncio.get_event_loop().run_forever()
