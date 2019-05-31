@@ -39,6 +39,7 @@ async def notify_users():
 
 
 async def register(websocket):
+	print(websocket)
 	users.add(websocket)
 	await notify_users()
 

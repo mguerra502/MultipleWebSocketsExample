@@ -52,7 +52,7 @@
                 plus = document.querySelector('.plus'),
                 value = document.querySelector('.value'),
                 users = document.querySelector('.users'),
-                websocket = new WebSocket("ws://localhost:7898/");
+                websocket = new WebSocket("wss://morning-gorge-16222.herokuapp.com/");
             minus.onclick = function (event) {
                 websocket.send(JSON.stringify({action: 'minus'}));
             }
