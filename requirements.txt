@@ -11,7 +11,7 @@ cycler==0.10.0
 Django==1.11.16
 dodgy==0.1.9
 enum34==1.1.6
-functools32==3.2.3.post2
+
 futures==3.2.0
 idna==2.7
 image==1.5.27
