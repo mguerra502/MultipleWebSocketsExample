@@ -39,8 +39,7 @@ async def notify_users():
 
 
 async def register(websocket):
-	print(type(websocket))
-	print(dir(websocket))
+	print(websocket.local_address)
 	users.add(websocket)
 	await notify_users()
 
