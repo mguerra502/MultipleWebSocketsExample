@@ -62,5 +62,7 @@ async def counter(websocket, path):
 		await unregister(websocket)
 
 
-asyncio.get_event_loop().run_until_complete(websockets.serve(counter, '0.0.0.0', 6789))
-asyncio.get_event_loop().run_forever()
+
+if __name__ == '__main__':
+	asyncio.get_event_loop().run_until_complete(websockets.serve(counter, '0.0.0.0', 6789))
+	asyncio.get_event_loop().run_forever()
