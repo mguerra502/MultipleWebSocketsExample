@@ -43,7 +43,7 @@ async def notify_users():
 async def register(websocket):
 	# print("#################################################")
 	print(sha512(str(websocket.__dict__).encode('utf-8')).hexdigest(), "\n")
-	pprint(str(len(websocket.request_headers)))
+	pprint(str(websocket.request_headers[0]['Host']))
 	await notify_users()
 
 
