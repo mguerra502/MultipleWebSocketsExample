@@ -5,6 +5,8 @@ import json
 import logging
 import websockets
 import sys
+from hashlib import sha512
+from pprint import pprint
 
 if len(sys.argv) < 2:
 	print("server.py <port>")
@@ -39,7 +41,9 @@ async def notify_users():
 
 
 async def register(websocket):
-	print(websocket.local_address)
+	# print("#################################################")
+	print(sha512(str(websocket.__dict__).encode('utf-8')).hexdigest(), "\n")
+	pprint(str(websocket.__dict__).encode('utf-8'))
 	users.add(websocket)
 	await notify_users()
 
@@ -51,9 +55,12 @@ async def unregister(websocket):
 
 async def counter(websocket, path):
 	# register(websocket) sends user_event() to websocket
+	print('Listening')
 	await register(websocket)
 	try:
+		print('Got Connection')
 		await websocket.send(state_event())
+		print("Got Event")
 		async for message in websocket:
 			data =  json.loads(message)
 			if data['action'] == 'minus':
@@ -65,7 +72,9 @@ async def counter(websocket, path):
 			else:
 				logging.error(f"Unsupported event: {data}")
 	finally:
+		print("Unregistering")
 		await unregister(websocket)
+		print("Unregistered")
 
 
 
